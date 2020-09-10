@@ -24,7 +24,7 @@ before_script:
     - make USE_PGXS=1 PG_CONFIG=${PGHOME}/bin/pg_config install
 
 script:
-    - make USE_PGXS=1 PG_CONFIG=${PGHOE}/bin/pg_config installcheck
+    - make USE_PGXS=1 PG_CONFIG=${PGHOME}/bin/pg_config installcheck
 
 after_script:
     - if [ -f regression.diffs ]; then cat regression.diffs; fi
