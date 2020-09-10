@@ -15,7 +15,7 @@ before_install:
     - make install
     - export PATH=${PATH}:${PGHOME}/bin
     - export LD_LIBRARY_PATH=${LD_LIBRAY_PATH}:${PGHOME}/lib
-    - initdb -D ${PGDATA} --locale=c --encoding=UTF8
+    - initdb -D ${PGDATA} --locale=C --encoding=UTF8
     - pg_ctl -D ${PGDATA} -w start
 
 before_script:
