@@ -1,0 +1,4 @@
+# pg_reject_truncate extension
+default_version = '1.0'
+module_pathname = '$libdir/pg_reject_truncate'
+
