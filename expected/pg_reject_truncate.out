@@ -1,4 +1,5 @@
 CREATE EXTENSION pg_reject_truncate;
+LOAD 'pg_reject_truncate';
 ---
 --- set up a table
 ---
