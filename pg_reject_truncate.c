@@ -6,10 +6,7 @@
 
 PG_MODULE_MAGIC;
 
-// PG_FUNCTION_INFO_V1(pg_reject_truncate);
-
 static ProcessUtility_hook_type prev_ProcessUtility = NULL;
-static int cnt;
 
 extern ProcessUtility_hook_type ProcessUtility_hook;
 
@@ -38,14 +35,13 @@ void pgrt_ProcessUtility(PlannedStmt *pstmt, const char *queryString,
                                 QueryEnvironment *queryEnv,
                                 DestReceiver *dest, QueryCompletion *qc)
 {
-    Node       *parsetree = pstmt->utilityStmt;
+	Node	*parsetree = pstmt->utilityStmt;
 
 	/*
 	 * if statements is truncate, rejecet it
 	 */
 	if (nodeTag(parsetree) == T_TruncateStmt)
 	{
-		cnt++;
 	    ereport(ERROR,
     	        (errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
         	     errmsg("TRUNCATE IS NOT ALLOWED")));
@@ -55,11 +51,3 @@ void pgrt_ProcessUtility(PlannedStmt *pstmt, const char *queryString,
 							context, params, queryEnv,
 							dest, qc);
 }
-
-/*
-Datum
-pg_reject_truncate(PG_FUNCTION_ARGS)
-{
-	PG_RETURN_INT64(cnt);
-}
-*/
