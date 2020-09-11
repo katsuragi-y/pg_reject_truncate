@@ -22,6 +22,8 @@ before_script:
     - cd ${CURDIR}
     - make USE_PGXS=1 PG_CONFIG=${PGHOME}/bin/pg_config
     - make USE_PGXS=1 PG_CONFIG=${PGHOME}/bin/pg_config install
+    - echo "shared_preload_libraries = 'pg_reject_truncate'" >> ${PGDATA}/postgresql.conf
+    - pg_ctl restart
 
 script:
     - make USE_PGXS=1 PG_CONFIG=${PGHOME}/bin/pg_config installcheck
