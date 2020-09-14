@@ -30,7 +30,8 @@ _PG_fini(void)
 	ProcessUtility_hook = prev_ProcessUtility;
 }
 
-void pgrt_ProcessUtility(PlannedStmt *pstmt, const char *queryString,
+static void
+pgrt_ProcessUtility(PlannedStmt *pstmt, const char *queryString,
                                 ProcessUtilityContext context, ParamListInfo params,
                                 QueryEnvironment *queryEnv,
                                 DestReceiver *dest, QueryCompletion *qc)
